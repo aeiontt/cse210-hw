@@ -1,52 +1,47 @@
 using System;
-using System.Collections.Generic;
 
 class Program
 {
     static void Main(string[] args)
     {
-        // Create videos
-        Video video1 = new Video("Learning C#", "CodeMaster", 600);
-        Video video2 = new Video("OOP Explained", "TechTalks", 480);
-        Video video3 = new Video("Abstraction Basics", "DevSimplified", 720);
+        // -------- ORDER 1 (USA CUSTOMER) --------
+        Address address1 = new Address(
+            "123 Main Street",
+            "New York",
+            "NY",
+            "USA"
+        );
 
-        // Add comments to video 1
-        video1.AddComment(new Comment("Alice", "Very helpful!"));
-        video1.AddComment(new Comment("Bob", "Clear explanation."));
-        video1.AddComment(new Comment("Chris", "Thanks for this video."));
+        Customer customer1 = new Customer("John Doe", address1);
 
-        // Add comments to video 2
-        video2.AddComment(new Comment("Dami", "OOP finally makes sense."));
-        video2.AddComment(new Comment("Sarah", "Nice examples."));
-        video2.AddComment(new Comment("Mike", "Well explained."));
+        Order order1 = new Order(customer1);
+        order1.AddProduct(new Product("Laptop", "P1001", 800, 1));
+        order1.AddProduct(new Product("Mouse", "P1002", 25, 2));
 
-        // Add comments to video 3
-        video3.AddComment(new Comment("John", "Great breakdown."));
-        video3.AddComment(new Comment("Emma", "Simple and clear."));
-        video3.AddComment(new Comment("Leo", "Loved this lesson."));
+        // Display order 1
+        Console.WriteLine(order1.GetPackingLabel());
+        Console.WriteLine(order1.GetShippingLabel());
+        Console.WriteLine($"Total Price: ${order1.GetTotalPrice()}");
+        Console.WriteLine();
 
-        // Store videos in a list
-        List<Video> videos = new List<Video>
-        {
-            video1,
-            video2,
-            video3
-        };
+        // -------- ORDER 2 (INTERNATIONAL CUSTOMER) --------
+        Address address2 = new Address(
+            "45 Adeola Odeku Street",
+            "Lagos",
+            "Lagos",
+            "Nigeria"
+        );
 
-        // Display video details
-        foreach (Video video in videos)
-        {
-            Console.WriteLine("--------------------------------");
-            Console.WriteLine($"Title: {video.Title}");
-            Console.WriteLine($"Author: {video.Author}");
-            Console.WriteLine($"Length: {video.Length} seconds");
-            Console.WriteLine($"Number of Comments: {video.GetCommentCount()}");
-            Console.WriteLine("Comments:");
+        Customer customer2 = new Customer("Damilare Bamisile", address2);
 
-            foreach (Comment comment in video.GetComments())
-            {
-                Console.WriteLine($" - {comment.CommenterName}: {comment.CommentText}");
-            }
-        }
+        Order order2 = new Order(customer2);
+        order2.AddProduct(new Product("Phone", "P2001", 500, 1));
+        order2.AddProduct(new Product("Earbuds", "P2002", 50, 2));
+        order2.AddProduct(new Product("Charger", "P2003", 20, 1));
+
+        // Display order 2
+        Console.WriteLine(order2.GetPackingLabel());
+        Console.WriteLine(order2.GetShippingLabel());
+        Console.WriteLine($"Total Price: ${order2.GetTotalPrice()}");
     }
 }

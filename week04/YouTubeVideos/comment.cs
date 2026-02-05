@@ -1,11 +1,15 @@
-public class Comment
+namespace YouTubeVideos
 {
-    public string CommenterName { get; set; }
-    public string CommentText { get; set; }
-
-    public Comment(string name, string text)
+    public class Comment
     {
-        CommenterName = name;
-        CommentText = text;
+        // Properties must be public so they can be accessed in Program.cs
+        public string Name { get; set; }
+        public string Text { get; set; }
+
+        public Comment(string name, string text)
+        {
+            Name = name;
+            Text = text;
+        }
     }
 }

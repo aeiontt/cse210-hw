@@ -5,26 +5,21 @@ public class Product
     private double _price;
     private int _quantity;
 
-    public Product(string name, string productId, double price, int quantity)
+    public Product(string name, string id, double price, int qty)
     {
         _name = name;
-        _productId = productId;
+        _productId = id;
         _price = price;
-        _quantity = quantity;
-    }
-
-    public string GetName()
-    {
-        return _name;
-    }
-
-    public string GetProductId()
-    {
-        return _productId;
+        _quantity = qty;
     }
 
     public double GetTotalCost()
     {
         return _price * _quantity;
+    }
+
+    public string GetPackingInfo()
+    {
+        return $"{_name} (ID: {_productId})";
     }
 }
